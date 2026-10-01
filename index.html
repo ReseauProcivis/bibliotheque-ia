@@ -12,7 +12,7 @@
 :root{
   --papier:#F3F1EC; --papier-2:#EAE7DF; --page:#FBFAF6; --ligne:#DCD8CD;
   --encre:#1C1E21; --gris:#515459; --gris-texte:#63666B;
-  --vert:#97C33D; --vert-texte:#4C7612; --vert-nuit:#2E4A12; --fluo:#B6FF58; --vert-20:#E6F0D2;
+  --vert:#97C33D; --vert-texte:#3F6410; --vert-nuit:#2E4A12; --fluo:#B6FF58; --vert-20:#E6F0D2;
   --f-titre:'Bricolage Grotesque','Montserrat',system-ui,sans-serif;
   --f-texte:'Montserrat',system-ui,-apple-system,'Segoe UI',sans-serif;
   --ombre-livre:0 1px 1px rgba(28,30,33,.14),0 10px 18px -10px rgba(28,30,33,.4),0 30px 44px -30px rgba(28,30,33,.5);
@@ -87,7 +87,8 @@ h1 span{color:var(--vert-texte)}
 .collections-nav .conteneur{display:flex;align-items:center;gap:8px;height:62px;overflow-x:auto;scrollbar-width:none}
 .collections-nav button{border:0;background:transparent;padding:8px 14px;border-radius:999px;cursor:pointer;font-size:14px;font-weight:600;color:var(--gris);display:inline-flex;align-items:center;gap:8px;white-space:nowrap}
 .collections-nav button i{width:10px;height:10px;border-radius:50%;background:var(--c);box-shadow:inset 0 0 0 1px rgba(0,0,0,.12)}
-.collections-nav button small{font-weight:500;opacity:.7}
+.collections-nav button small{font-weight:600;color:var(--gris-texte)}
+.collections-nav button[aria-pressed="true"] small{color:#C9CBC6}
 .collections-nav button:hover{background:var(--papier-2);color:var(--encre)}
 .collections-nav button[aria-pressed="true"]{background:var(--encre);color:#fff}
 .collections-nav .compte{margin-left:auto;font-size:13.5px;color:var(--gris-texte);white-space:nowrap;padding-left:12px}
@@ -135,11 +136,12 @@ h1 span{color:var(--vert-texte)}
 .lecteur.ouvert .page.droite{animation:poser .55s .12s cubic-bezier(.2,.8,.2,1) both}
 @keyframes tourner{from{transform:rotateY(80deg);opacity:.2}to{transform:none;opacity:1}}
 @keyframes poser{from{opacity:0;transform:translateX(-14px)}to{opacity:1;transform:none}}
-.page .haut{display:flex;justify-content:space-between;font-size:12px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;opacity:.85}
+.page .haut span:last-child{white-space:nowrap}
+.page .haut{display:flex;justify-content:space-between;gap:12px;font-size:12px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;opacity:.85}
 .page.gauche .motif-grand{flex:1;min-height:150px;display:grid;place-items:center;padding:20px 30px}
 .page.gauche .motif-grand svg{width:100%;max-width:300px;height:100%;max-height:260px}
 .page.gauche h3{font-family:var(--f-titre);font-weight:800;font-size:clamp(34px,4.2vw,54px);line-height:.95;letter-spacing:-.035em;margin:0 0 12px}
-.page.gauche code{font-size:12.5px;opacity:.7;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+.page.gauche code{font-size:12.5px;opacity:.85;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
 .page.gauche .resume{font-size:16px;line-height:1.55;margin:16px 0 0;max-width:420px}
 .page.droite h5{font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--gris-texte);margin:0 0 12px;font-weight:700}
 .page.droite section+section{margin-top:28px}
@@ -172,7 +174,11 @@ h1 span{color:var(--vert-texte)}
   .livre-ouvert{grid-template-columns:1fr;height:100%;overflow:auto;width:100%}
   .page{overflow:visible;padding:34px 26px}
   .page.gauche{border-radius:0;box-shadow:none;min-height:auto}
-  .page.gauche .motif-grand{min-height:160px;max-height:200px}
+  .page.gauche .motif-grand{flex:none;display:flex;justify-content:center;align-items:center;height:auto;min-height:0;padding:18px 0 22px}
+  .page.gauche .motif-grand svg{width:160px;height:160px;max-width:none;max-height:none;margin:0}
+  .page.gauche .haut{padding-right:52px}
+  .page.droite .actions{margin:auto -26px -34px;padding:14px 26px 18px;bottom:-34px;background:var(--page);border-top:1px solid var(--ligne)}
+  .page.droite .actions .bouton{font-size:14px;padding:11px 16px}
   .page.droite{border-radius:0;box-shadow:none}
   .page.gauche::after,.page.droite::before{display:none}
   .fermer{top:14px;right:14px;position:fixed}
@@ -201,7 +207,7 @@ h1 span{color:var(--vert-texte)}
 .trois{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0;border-top:2px solid var(--encre)}
 .trois div{padding:28px 30px 10px 0}
 .trois div+div{padding-left:30px;border-left:1px solid var(--ligne)}
-.trois b{font-family:var(--f-titre);font-size:64px;line-height:1;font-weight:800;color:var(--vert);letter-spacing:-.04em}
+.trois b{font-family:var(--f-titre);font-size:64px;line-height:1;font-weight:800;color:var(--vert-texte);letter-spacing:-.04em}
 .trois h3{font-family:var(--f-titre);font-size:22px;margin:14px 0 6px;line-height:1.15}
 .trois p{margin:0;color:var(--gris-texte);font-size:15px}
 .installer{margin-top:50px;background:var(--page);border:1px solid var(--ligne);border-radius:6px}
@@ -346,7 +352,7 @@ h1 span{color:var(--vert-texte)}
             <strong>Acheter dans le neuf : les cinq étapes</strong>
             <span class="ve-pages">1 / 6</span>
           </div>
-          <div class="nuancier"><span style="background:#2E4A12">#2E4A12</span><span style="background:#97C33D">#97C33D</span><span style="background:#B6FF58;color:#1C1E21">#B6FF58</span></div>
+          <div class="nuancier"><span style="background:#2E4A12">#2E4A12</span><span style="background:#97C33D;color:#1C1E21">#97C33D</span><span style="background:#B6FF58;color:#1C1E21">#B6FF58</span></div>
           <p>Exemple aux couleurs du réseau. Avec votre kit, le Designer visuel reprend vos couleurs, vos polices, votre logo et sa place, relevés dans le PDF de votre charte.</p>
         </aside>
       </div>
@@ -721,7 +727,6 @@ function ouvrir(id, pousser = true){
   if (s.outils) besoins.push(`<li>${ICO.poste}<span>Sur votre poste : ${esc(s.outils)}</span></li>`);
   if (!besoins.length) besoins.push(`<li>${ICO.ok}<span>Rien de plus que votre assistant.</span></li>`);
   const lo = $('#livre-ouvert');
-  lo.style.setProperty('--fond', t.fond); lo.style.setProperty('--encre', t.encre); lo.style.setProperty('--accent', t.accent);
   lo.innerHTML = `
     <button class="fermer" data-fermer aria-label="Fermer">${ICO.fermer}</button>
     <div class="page gauche">
@@ -738,6 +743,8 @@ function ouvrir(id, pousser = true){
       <section><h5>À lire ensuite</h5><div class="voisins">${s.suite.map(v => `<button class="voisin" data-skill="${v}" aria-label="${esc(parId[v].titre)}">${couverture(parId[v])}</button>`).join('')}</div></section>
       <div class="actions"><a class="bouton plein" href="#" data-telecharger>${ICO.dl}Télécharger le titre <small>.zip</small></a><a class="bouton trait" href="#" data-telecharger>Toute la collection <small>.plugin</small></a></div>
     </div>`;
+  const pg = lo.querySelector('.page.gauche');
+  pg.style.setProperty('--fond', t.fond); pg.style.setProperty('--encre', t.encre); pg.style.setProperty('--accent', t.accent);
   const l = $('#lecteur');
   l.classList.remove('ouvert'); void l.offsetWidth; l.classList.add('ouvert');
   l.setAttribute('aria-hidden', 'false');
