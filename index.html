@@ -73,15 +73,15 @@ h1 span{color:var(--vert-texte)}
 
 .eventail{position:relative;height:520px}
 .eventail .disque{position:absolute;width:400px;height:400px;border-radius:50%;background:var(--vert);left:50%;top:6px;transform:translateX(-46%)}
-.eventail .pose{position:absolute;bottom:62px;left:50%;width:205px;transition:transform .6s cubic-bezier(.2,.8,.2,1)}
-.eventail .p1{transform:translateX(-118%) rotate(-11deg)}
+.eventail .pose{position:absolute;bottom:62px;left:50%;width:min(205px,30%);transition:transform .6s cubic-bezier(.2,.8,.2,1)}
+.eventail .p1{transform:translateX(-160%) rotate(-7deg)}
 .eventail .p2{transform:translateX(-50%) translateY(-26px);z-index:2}
-.eventail .p3{transform:translateX(18%) rotate(10deg)}
-.eventail:hover .p1{transform:translateX(-128%) rotate(-15deg)}
-.eventail:hover .p3{transform:translateX(28%) rotate(14deg)}
+.eventail .p3{transform:translateX(60%) rotate(7deg)}
+.eventail:hover .p1{transform:translateX(-164%) rotate(-9deg)}
+.eventail:hover .p3{transform:translateX(64%) rotate(9deg)}
 .eventail .sol{position:absolute;left:12%;right:12%;bottom:40px;height:26px;border-radius:50%;background:radial-gradient(closest-side,rgba(28,30,33,.28),transparent)}
-@media (max-width:960px){.hero .conteneur{grid-template-columns:1fr}.eventail{height:440px}.eventail .disque{width:320px;height:320px}.eventail .pose{width:170px}}
-@media (max-width:520px){.eventail{height:360px}.eventail .disque{width:250px;height:250px}.eventail .pose{width:132px}}
+@media (max-width:960px){.hero .conteneur{grid-template-columns:1fr}.eventail{height:440px}.eventail .disque{width:320px;height:320px}.eventail .pose{width:min(185px,30%)}}
+@media (max-width:520px){.eventail{height:300px}.eventail .disque{width:230px;height:230px}.eventail .pose{width:30%;bottom:50px}.eventail .sol{bottom:30px}}
 
 /* Couverture de livre (générée) */
 .objet{container-type:inline-size;position:relative;isolation:isolate;border-radius:3px 7px 7px 3px;box-shadow:var(--ombre-livre);transform-origin:left center;transition:transform .5s cubic-bezier(.2,.8,.2,1),box-shadow .5s}
@@ -154,8 +154,9 @@ h1 span{color:var(--vert-texte)}
 @keyframes poser{from{opacity:0;transform:translateX(-14px)}to{opacity:1;transform:none}}
 .page .haut span:last-child{white-space:nowrap}
 .page .haut{display:flex;justify-content:space-between;gap:12px;font-size:12px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;opacity:.85}
-.page.gauche .motif-grand{flex:1;min-height:150px;display:grid;place-items:center;padding:20px 30px}
-.page.gauche .motif-grand svg{width:100%;max-width:300px;height:100%;max-height:260px}
+/* Le dessin occupe exactement la place laissée par le texte : il ne peut pas déborder dessus */
+.page.gauche .motif-grand{flex:1 1 auto;min-height:120px;position:relative;margin:22px 0 26px}
+.page.gauche .motif-grand svg{position:absolute;inset:0;width:100%;height:100%;max-width:none;max-height:none;margin:0;overflow:hidden}
 .page.gauche h3{font-family:var(--f-titre);font-weight:800;font-size:clamp(34px,4.2vw,54px);line-height:.95;letter-spacing:-.035em;margin:0 0 12px}
 .page.gauche code{font-size:12.5px;opacity:.85;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
 .page.gauche .resume{font-size:16px;line-height:1.55;margin:16px 0 0;max-width:420px}
@@ -176,8 +177,9 @@ h1 span{color:var(--vert-texte)}
 .voisin{border:0;background:none;padding:0;cursor:pointer;width:74px;text-align:left}
 .voisin .objet{box-shadow:0 1px 1px rgba(0,0,0,.12),0 8px 14px -8px rgba(0,0,0,.4)}
 .voisin:hover .objet{transform:translateY(-4px)}
-.page.droite .actions{margin:auto -50px -40px;padding:20px 50px 26px;display:flex;gap:10px;flex-wrap:wrap;position:sticky;bottom:-40px;background:var(--page);border-top:1px solid var(--ligne)}
-.page.droite section:last-of-type{margin-bottom:32px}
+.page.droite{padding:0;overflow:hidden}
+.page.droite .contenu{flex:1 1 auto;min-height:0;overflow:auto;padding:46px 50px 30px;scrollbar-width:thin}
+.page.droite .actions{flex:none;padding:18px 50px 24px;display:flex;gap:10px;flex-wrap:wrap;background:var(--page);border-top:1px solid var(--ligne);border-radius:0 0 12px 0}
 .bouton{display:inline-flex;align-items:center;gap:8px;font-weight:600;font-size:15px;padding:13px 20px;border-radius:999px;border:0;cursor:pointer;text-decoration:none}
 .bouton small{font-weight:500;opacity:.7;font-size:12.5px}
 .bouton.plein{background:var(--encre);color:#fff}
@@ -191,10 +193,11 @@ h1 span{color:var(--vert-texte)}
   .livre-ouvert{grid-template-columns:1fr;height:100%;overflow:auto;width:100%}
   .page{overflow:visible;padding:34px 26px}
   .page.gauche{border-radius:0;box-shadow:none;min-height:auto}
-  .page.gauche .motif-grand{flex:none;display:flex;justify-content:center;align-items:center;height:auto;min-height:0;padding:18px 0 22px}
-  .page.gauche .motif-grand svg{width:160px;height:160px;max-width:none;max-height:none;margin:0}
+  .page.gauche .motif-grand{flex:none;height:170px;min-height:0;margin:18px 0 22px}
   .page.gauche .haut{padding-right:52px}
-  .page.droite .actions{margin:auto -26px -34px;padding:14px 26px 18px;bottom:-34px;background:var(--page);border-top:1px solid var(--ligne)}
+  .page.droite{overflow:visible}
+  .page.droite .contenu{overflow:visible;padding:30px 26px 22px}
+  .page.droite .actions{padding:16px 26px 26px;border-radius:0}
   .page.droite .actions .bouton{font-size:14px;padding:11px 16px}
   .page.droite{border-radius:0;box-shadow:none}
   .page.gauche::after,.page.droite::before{display:none}
@@ -741,10 +744,12 @@ function ouvrir(id, pousser = true){
       <p class="resume">${esc(s.resume)}</p>
     </div>
     <div class="page droite">
+      <div class="contenu">
       <section><h5>Demandez-lui par exemple</h5>${s.ex.map(e => `<div class="citation"><p>« ${esc(e)} »</p><button data-copier="${esc(e)}">${ICO.copie}Copier</button></div>`).join('')}</section>
       <section><h5>Ce qu'il lui faut</h5><ul class="besoins">${besoins.join('')}</ul></section>
       <section><h5>Où il fonctionne</h5><p class="ou-texte"><strong>${ICO_OU[s.ou]}${OU[s.ou].nom}.</strong> ${esc(OU[s.ou].detail)}</p></section>
       <section><h5>Il s'enchaîne avec</h5><div class="voisins">${s.suite.map(v => `<button class="voisin" data-skill="${v}" aria-label="${esc(parId[v].titre)}">${couverture(parId[v])}</button>`).join('')}</div></section>
+      </div>
       <div class="actions"><a class="bouton plein" href="#" data-telecharger>${ICO.dl}Télécharger le skill <small>.zip</small></a><a class="bouton trait" href="#" data-telecharger>Toute la collection <small>.plugin</small></a></div>
     </div>`;
   const pg = lo.querySelector('.page.gauche');
